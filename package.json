@@ -1,0 +1,51 @@
+{
+  "name": "mindfeed",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tiptap/extension-code-block-lowlight": "^2.10.3",
+    "@tiptap/extension-highlight": "^2.10.3",
+    "@tiptap/extension-image": "^2.10.3",
+    "@tiptap/pm": "^2.10.3",
+    "@tiptap/react": "^2.10.3",
+    "@tiptap/starter-kit": "^2.10.3",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "@yoopta/blockquote": "^4.9.2",
+    "@yoopta/code": "^4.9.2",
+    "@yoopta/editor": "^4.9.2",
+    "@yoopta/headings": "^4.9.2",
+    "@yoopta/lists": "^4.9.2",
+    "@yoopta/marks": "^4.9.2",
+    "@yoopta/paragraph": "^4.9.2",
+    "lowlight": "^3.2.0",
+    "lucide-react": "^0.453.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^9.0.1",
+    "react-masonry-css": "^1.0.16",
+    "react-router-dom": "^7.0.2",
+    "react-syntax-highlighter": "^15.6.1",
+    "remark-gfm": "^4.0.0",
+    "slate": "^0.102.0",
+    "slate-react": "^0.102.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15",
+    "@types/react": "^18.3.6",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "globals": "^15.9.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.6"
+  }
+}
