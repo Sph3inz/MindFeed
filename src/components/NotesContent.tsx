@@ -18,7 +18,7 @@ import { doc, deleteDoc } from 'firebase/firestore';
 const lowlight = createLowlight(common);
 
 interface Note extends ServiceNote {
-  metadata: {
+  metadata?: {
     date: string;
     tag: string;
   };
@@ -140,7 +140,7 @@ export default function NotesContent({ onSetChatContent }: { onSetChatContent: (
       
       try {
         const fetchedNotes = await getNotes(user.uid);
-        setNotes(fetchedNotes);
+        setNotes(fetchedNotes as Note[]);
       } catch (error) {
         console.error('Error loading notes:', error);
       }
@@ -158,8 +158,12 @@ export default function NotesContent({ onSetChatContent }: { onSetChatContent: (
       const newNote = await addNote({
         title: 'New Note',
         content: '',
+        metadata: {
+          date: new Date().toISOString(),
+          tag: 'Note'
+        }
       }, user.uid);
-      setNotes(prev => [newNote, ...prev]);
+      setNotes(prev => [newNote as Note, ...prev]);
     } catch (error) {
       console.error('Error adding note:', error);
     }
@@ -194,8 +198,12 @@ export default function NotesContent({ onSetChatContent }: { onSetChatContent: (
       const newNote = await addNote({
         title: 'New Note',
         content: content,
+        metadata: {
+          date: new Date().toISOString(),
+          tag: 'Note'
+        }
       }, user!.uid);
-      setNotes(prev => [newNote, ...prev]);
+      setNotes(prev => [newNote as Note, ...prev]);
 
       if (editor) {
         editor.commands.setContent('');
@@ -210,8 +218,12 @@ export default function NotesContent({ onSetChatContent }: { onSetChatContent: (
       const newNote = await addNote({
         title: 'Focused Note',
         content: content,
+        metadata: {
+          date: new Date().toISOString(),
+          tag: 'Focus'
+        }
       }, user!.uid);
-      setNotes(prev => [newNote, ...prev]);
+      setNotes(prev => [newNote as Note, ...prev]);
     } catch (error) {
       console.error('Error saving focused note:', error);
     }
