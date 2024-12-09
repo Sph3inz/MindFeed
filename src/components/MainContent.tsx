@@ -1,8 +1,17 @@
-import { useState } from 'react'
-import { PanelRightOpen, PanelRightClose } from 'lucide-react'
-import FeedContent from './FeedContent'
-import NotesContent from './NotesContent'
-import ImportWidget from './ImportWidget'
+import { useState, lazy, Suspense } from 'react'
+import { PanelRightOpen } from 'lucide-react'
+
+// Lazy load components
+const FeedContent = lazy(() => import('./FeedContent'))
+const NotesContent = lazy(() => import('./NotesContent'))
+const ImportWidget = lazy(() => import('./ImportWidget'))
+
+// Loading fallback
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center h-full">
+    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-white/20"></div>
+  </div>
+)
 
 interface MainContentProps {
   isRightSidebarOpen: boolean
@@ -14,77 +23,78 @@ const MainContent = ({ isRightSidebarOpen, onToggleRightSidebar, onSetChatConten
   const [activeTab, setActiveTab] = useState<'feed' | 'notes' | 'spaces'>('feed')
 
   return (
-    <div className={`flex-1 overflow-auto relative px-4 py-6 h-full`}>
-      {/* Floating Tab Navigation */}
-      <div className="flex justify-center mb-8">
-        <div className="inline-flex bg-white/60 backdrop-blur-sm rounded-xl p-1 shadow-sm">
-          <button
-            onClick={() => setActiveTab('feed')}
-            className={`px-6 py-2 rounded-lg text-sm font-medium transition-all ${
-              activeTab === 'feed'
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
-          >
-            Feed
-          </button>
-          <button
-            onClick={() => setActiveTab('notes')}
-            className={`px-6 py-2 rounded-lg text-sm font-medium transition-all ${
-              activeTab === 'notes'
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
-          >
-            Notes
-          </button>
-          <button
-            onClick={() => setActiveTab('spaces')}
-            className={`px-6 py-2 rounded-lg text-sm font-medium transition-all ${
-              activeTab === 'spaces'
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
-          >
-            Spaces
-          </button>
+    <div className="flex-1 overflow-auto relative px-4 py-6 h-full bg-[#0A0A0A]">
+      {/* Simplified background with reduced animations */}
+      <div className="fixed inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(120,100,255,0.15),transparent_70%)]" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Floating Tab Navigation */}
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex bg-black/20 border border-white/[0.08] rounded-full p-1">
+            {[
+              { id: 'feed', label: 'Feed' },
+              { id: 'notes', label: 'Notes' },
+              { id: 'spaces', label: 'Spaces' }
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as typeof activeTab)}
+                className={`px-6 py-2 rounded-full text-sm font-medium ${
+                  activeTab === tab.id
+                    ? 'bg-[#8B5CF6] text-white'
+                    : 'text-white/60 hover:text-white/90'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
+
+        {/* Tab Content with Suspense */}
+        <div className="h-full">
+          <Suspense fallback={<LoadingFallback />}>
+            {activeTab === 'feed' && (
+              <div className="max-w-3xl mx-auto">
+                <FeedContent 
+                  onSetChatContent={onSetChatContent} 
+                  onToggleRightSidebar={onToggleRightSidebar} 
+                />
+              </div>
+            )}
+
+            {activeTab === 'notes' && (
+              <div className="w-full h-full">
+                <NotesContent onSetChatContent={onSetChatContent} />
+              </div>
+            )}
+
+            {activeTab === 'spaces' && (
+              <div className="max-w-3xl mx-auto">
+                <div>Spaces Content</div>
+              </div>
+            )}
+          </Suspense>
+        </div>
+
+        {/* Import Widget with Suspense */}
+        <Suspense fallback={null}>
+          <ImportWidget isRightSidebarOpen={isRightSidebarOpen} />
+        </Suspense>
+
+        {/* Simplified toggle button */}
+        {!isRightSidebarOpen && (
+          <button
+            onClick={onToggleRightSidebar}
+            className="fixed right-4 top-4 p-2.5 bg-black/40 rounded-lg hover:bg-black/60"
+          >
+            <PanelRightOpen className="w-5 h-5 text-white/80" />
+          </button>
+        )}
       </div>
-
-      {/* Tab Content */}
-      <div className="h-full">
-        {activeTab === 'feed' && (
-          <div className="max-w-3xl mx-auto">
-            <FeedContent onSetChatContent={onSetChatContent} />
-          </div>
-        )}
-
-        {activeTab === 'notes' && (
-          <div className="w-full h-full">
-            <NotesContent onSetChatContent={onSetChatContent} />
-          </div>
-        )}
-
-        {activeTab === 'spaces' && (
-          <div className="max-w-3xl mx-auto">
-            <div>Spaces Content</div>
-          </div>
-        )}
-      </div>
-
-      {/* Import Widget */}
-      <ImportWidget isRightSidebarOpen={isRightSidebarOpen} />
-
-      {/* Persistent toggle button */}
-      {!isRightSidebarOpen && (
-        <button
-          onClick={onToggleRightSidebar}
-          className="fixed right-4 top-4 p-2.5 bg-white rounded-lg shadow-md hover:bg-gray-50 transition-all duration-200 group"
-          aria-label="Open sidebar"
-        >
-          <PanelRightOpen className="w-5 h-5 text-gray-600 group-hover:text-gray-900" />
-        </button>
-      )}
     </div>
   )
 }

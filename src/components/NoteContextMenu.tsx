@@ -1,14 +1,27 @@
 import { useEffect, useRef } from 'react';
-import { Hash, Plus, BrainCircuit, Trash2 } from 'lucide-react';
+import { ClipboardCopy, Plus, BrainCircuit, Trash2 } from 'lucide-react';
 
 interface NoteContextMenuProps {
   x: number;
   y: number;
   onClose: () => void;
-  onDelete: () => void;
+  onDelete: (id: string) => void;
+  onCopy: (id: string) => void;
+  onTopOfMind: (id: string) => void;
+  onAddToSpace: (id: string) => void;
+  noteId: string;
 }
 
-const NoteContextMenu = ({ x, y, onClose, onDelete }: NoteContextMenuProps) => {
+const NoteContextMenu = ({ 
+  x, 
+  y, 
+  onClose, 
+  onDelete, 
+  onCopy,
+  onTopOfMind,
+  onAddToSpace,
+  noteId 
+}: NoteContextMenuProps) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,24 +44,33 @@ const NoteContextMenu = ({ x, y, onClose, onDelete }: NoteContextMenuProps) => {
         top: y,
       }}
     >
-      <div className="px-3 py-2 text-xs font-medium text-gray-500 flex items-center gap-2">
-        <Hash className="w-3.5 h-3.5" />
-        Add tags
-      </div>
-      <div className="px-3 py-2 text-xs font-medium text-gray-500 flex items-center gap-2">
-        <Plus className="w-3.5 h-3.5" />
+      <button
+        onClick={() => onAddToSpace(noteId)}
+        className="px-3 py-2 text-sm font-medium text-gray-600 w-full text-left flex items-center gap-2 hover:bg-gray-50 transition-colors"
+      >
+        <Plus className="w-4 h-4" />
         Add to space
-      </div>
-      <div className="px-3 py-2 text-xs font-medium text-gray-500 flex items-center gap-2">
-        <BrainCircuit className="w-3.5 h-3.5" />
+      </button>
+      <button
+        onClick={() => onCopy(noteId)}
+        className="px-3 py-2 text-sm font-medium text-gray-600 w-full text-left flex items-center gap-2 hover:bg-gray-50 transition-colors"
+      >
+        <ClipboardCopy className="w-4 h-4" />
+        Copy to clipboard
+      </button>
+      <button
+        onClick={() => onTopOfMind(noteId)}
+        className="px-3 py-2 text-sm font-medium text-gray-600 w-full text-left flex items-center gap-2 hover:bg-gray-50 transition-colors"
+      >
+        <BrainCircuit className="w-4 h-4" />
         Top of Mind
-      </div>
+      </button>
       <div className="h-px bg-gray-100 my-1" />
       <button
-        onClick={onDelete}
-        className="px-3 py-2 text-xs font-medium text-red-500 w-full text-left flex items-center gap-2 hover:bg-red-50"
+        onClick={() => onDelete(noteId)}
+        className="px-3 py-2 text-sm font-medium text-red-500 w-full text-left flex items-center gap-2 hover:bg-red-50 transition-colors"
       >
-        <Trash2 className="w-3.5 h-3.5" />
+        <Trash2 className="w-4 h-4" />
         Delete card
       </button>
     </div>

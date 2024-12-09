@@ -4,6 +4,10 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --tab-bg: rgba(0, 0, 0, 0.2);
+  --tab-hover-bg: rgba(0, 0, 0, 0.3);
+  --tab-text: rgba(255, 255, 255, 0.6);
+  --tab-hover-text: rgba(255, 255, 255, 0.9);
 }
 
 body {
@@ -26,4 +30,32 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-400;
+}
+
+/* Optimized category tabs */
+.category-tab {
+  @apply px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap border border-white/[0.08];
+  background-color: var(--tab-bg);
+  color: var(--tab-text);
+  transform: translateZ(0);
+}
+
+.category-tab:hover {
+  background-color: var(--tab-hover-bg);
+  color: var(--tab-hover-text);
+}
+
+.category-tab.active {
+  background-color: var(--tab-hover-bg);
+  color: var(--tab-hover-text);
+}
+
+/* Preload hover states */
+@media (hover: hover) {
+  .category-tab::before {
+    content: "";
+    position: absolute;
+    opacity: 0;
+    background-color: var(--tab-hover-bg);
+  }
 }

@@ -1,11 +1,18 @@
-import { Lightbulb, Network, Brain, BookOpen, Youtube, FileText, Image as ImageIcon, RefreshCw, Bookmark, ChevronDown, ChevronUp, Maximize2, MessageSquare, ArrowRight } from 'lucide-react'
-import { useState } from 'react'
+import { Lightbulb, Network, Brain, BookOpen, RefreshCw, Bookmark, ChevronDown, ChevronUp, Maximize2, MessageSquare, ArrowRight } from 'lucide-react'
+import { useState, useMemo, useCallback, memo, useRef, Suspense, lazy, useEffect } from 'react'
 import Modal from './Modal'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+
+// Placeholder loading component
+const LoadingCard = () => (
+  <div className="animate-pulse">
+    <div className="h-32 bg-black/20 rounded-3xl mb-4"></div>
+  </div>
+)
 
 interface FeedCard {
   id: string
@@ -24,41 +31,41 @@ interface FeedCard {
 const getTypeIcon = (type: FeedCard['type']) => {
   switch (type) {
     case 'idea':
-      return <Lightbulb className="w-5 h-5 text-yellow-500" />
+      return <Lightbulb className="w-5 h-5 text-amber-500" strokeWidth={2.5} />
     case 'connection':
-      return <Network className="w-5 h-5 text-blue-500" />
+      return <Network className="w-5 h-5 text-blue-500" strokeWidth={2.5} />
     case 'thought':
-      return <Brain className="w-5 h-5 text-purple-500" />
+      return <Brain className="w-5 h-5 text-violet-500" strokeWidth={2.5} />
     case 'reflection':
-      return <BookOpen className="w-5 h-5 text-green-500" />
+      return <BookOpen className="w-5 h-5 text-emerald-500" strokeWidth={2.5} />
   }
 }
 
 const getTypeColor = (type: FeedCard['type']) => {
   switch (type) {
     case 'idea':
-      return 'bg-yellow-50'
+      return 'bg-gradient-to-br from-amber-500/20 to-amber-200/20'
     case 'connection':
-      return 'bg-blue-50'
+      return 'bg-gradient-to-br from-blue-500/20 to-blue-200/20'
     case 'thought':
-      return 'bg-purple-50'
+      return 'bg-gradient-to-br from-violet-500/20 to-violet-200/20'
     case 'reflection':
-      return 'bg-green-50'
+      return 'bg-gradient-to-br from-emerald-500/20 to-emerald-200/20'
   }
 }
 
 const getTagColor = (tag: string) => {
   switch (tag.toLowerCase()) {
     case 'ai':
-      return 'bg-purple-100 text-purple-600'
+      return 'bg-violet-50 text-violet-600'
     case 'tech':
-      return 'bg-blue-100 text-blue-600'
+      return 'bg-sky-50 text-sky-600'
     case 'productivity':
-      return 'bg-green-100 text-green-600'
+      return 'bg-emerald-50 text-emerald-600'
     case 'learning':
-      return 'bg-yellow-100 text-yellow-600'
+      return 'bg-amber-50 text-amber-600'
     default:
-      return 'bg-gray-100 text-gray-600'
+      return 'bg-slate-50 text-slate-600'
   }
 }
 
@@ -66,30 +73,28 @@ const demoFeedItems: FeedCard[] = [
   {
     id: '1',
     type: 'thought',
-    title: 'Late Night Coding Philosophy & Future of AI',
-    content: `3:47 AM and I can't stop thinking about the intersection of consciousness and artificial intelligence. Just spent the last 4 hours diving deep into research papers about neural networks, and something fascinating struck me - we're approaching AI development all wrong. We're so focused on making AI think like a computer that we're forgetting how organic human thought actually is.
+    title: 'Late Night Thoughts on AI and Consciousness',
+    content: `Just had a fascinating late-night reflection on AI and consciousness. The way we're approaching AI development might need a paradigm shift - instead of forcing rigid, computer-like thinking, what if we embraced the beautiful chaos of human cognition?
 
-    Key insight that hit me while debugging that recursive algorithm earlier: our brains don't process information linearly, they work in these beautiful, chaotic patterns. What if instead of trying to make AI more logical, we should be making it more "human-messy"? Like how I jump between tasks, or how a random song triggers a childhood memory.
+Key insights:
+- Our brains work in non-linear, organic patterns
+- Creativity often emerges from "messy" thinking
+- Perfect logic might be limiting true intelligence
+- Emotional context matters in decision making
 
-    Potential research directions to explore:
-    - Neural plasticity in deep learning models
-    - Emotional memory encoding in AI systems
-    - Randomness as a feature, not a bug
-    - The role of "sleep" in AI learning cycles
+Research directions to explore:
+- Neural plasticity in AI systems
+- Emotional memory encoding
+- Controlled randomness as a feature
+- AI sleep cycles and learning
 
-    Need to connect this with that paper I read last week about emergent behaviors in large language models. There's something there about how unpredictability might actually be key to true intelligence. Making a note to review my highlights from "On Intelligence" by Jeff Hawkins tomorrow - his thoughts on memory prediction framework might be relevant here.
+Questions to ponder:
+1. How do we measure "human-like" thinking?
+2. Is perfect recall actually beneficial?
+3. Can controlled chaos improve creativity?
+4. What role do emotions play in intelligence?
 
-    Random tangent: Could we create an AI that experiences something like ADHD? Not as a flaw, but as a feature that enables rapid context-switching and creative connections? This reminds me of how some of my best coding solutions come when I'm not actively thinking about the problem.
-
-    TODO: Write a blog post about this. Draft some code examples. Maybe start a small research project? Need to check if anyone in my network is working on something similar. This could be huge for my thesis direction.
-
-    Questions to ponder:
-    1. How do we measure "human-like" thinking in AI?
-    2. Is perfect recall actually detrimental to true intelligence?
-    3. Could introducing controlled chaos improve AI creativity?
-    4. What role does emotional context play in decision-making?
-
-    Going to sleep on this, but first setting a reminder to review these thoughts tomorrow with fresh eyes. Might be sleep-deprived brilliance or sleep-deprived nonsense, but either way, there's something here worth exploring further.`,
+Need to flesh this out more tomorrow, but there might be something revolutionary here.`,
     timestamp: '3:47 AM',
     tags: ['AI', 'Tech', 'Learning'],
     sources: [
@@ -100,345 +105,414 @@ const demoFeedItems: FeedCard[] = [
   {
     id: '2',
     type: 'connection',
-    title: 'Connecting System Design Patterns with Biological Systems',
-    content: `Just had a mind-blowing realization while working on that distributed systems project! There's an incredible parallel between how nature handles scale and how we design software systems. This could revolutionize how I approach system architecture.
+    title: 'Nature-Inspired System Design',
+    content: `Made an interesting connection between biological systems and software architecture. Nature might have already solved our scaling problems!
 
-    Core Observation:
-    Ant colonies scale perfectly - each ant follows simple rules, yet the colony achieves complex goals. This maps DIRECTLY to microservices architecture! Each service should be dumb and simple, but the system as a whole becomes intelligent.
+Key Parallels:
+1. Load Balancing
+   - Ant colonies use dynamic trail systems
+   - Could inspire better request routing
+   - Natural load distribution patterns
 
-    Drawing parallels:
-    1. Load Balancing
-       - Ants: Dynamic trail reinforcement
-       - Systems: Dynamic request routing
-       - Implementation idea: Could we create a "pheromone-based" load balancer?
+2. Fault Tolerance
+   - Natural redundancy in species
+   - Self-healing mechanisms
+   - Adaptive recovery systems
 
-    2. Fault Tolerance
-       - Nature: Species redundancy
-       - Systems: Service replication
-       - Key insight: Over-replication isn't wasteful, it's survival
+3. Communication
+   - Hormone signaling systems
+   - Event-driven patterns
+   - Priority-based messaging
 
-    3. Communication Patterns
-       - Biological: Hormone signaling
-       - Technical: Event-driven architecture
-       - Potential pattern: Gradient-based message priority
+Next Steps:
+- Research swarm intelligence
+- Study biological scaling
+- Prototype nature-inspired algorithms
+- Test in small-scale systems
 
-    This completely changes how I view my current project's architecture. Instead of fighting against system complexity, we should embrace organic growth patterns. Nature has already solved these problems through evolution - we're just reinventing the wheel!
-
-    Practical Applications:
-    - Redesign our service discovery to use "colony patterns"
-    - Implement gradient-based load balancing
-    - Create self-healing service clusters
-    - Develop organic scaling algorithms
-
-    Need to dive deeper into:
-    - Swarm intelligence papers
-    - Biological system scaling studies
-    - Emergence theory in complex systems
-    - Natural selection algorithms
-
-    This could be a game-changer for how we approach distributed systems. Going to refactor some of our core services to test these patterns. Imagine if we could create truly organic, self-organizing systems!
-
-    Critical questions to explore:
-    - How do we maintain system predictability while allowing organic growth?
-    - Can we quantify the efficiency of nature-inspired patterns?
-    - What are the trade-offs between controlled and emergent architectures?
-
-    Next steps:
-    1. Document these patterns properly
-    2. Create proof-of-concept implementations
-    3. Measure performance metrics
-    4. Share findings with the team
-
-    This is why I love programming - these moments of clarity where different domains suddenly connect in meaningful ways. Need to schedule a whiteboarding session to flesh this out further.`,
+This could revolutionize how we design distributed systems. Nature's been perfecting these patterns for millions of years!`,
     timestamp: '2:15 PM',
-    tags: ['Tech', 'Productivity'],
+    tags: ['Tech', 'Learning'],
     sources: [
-      { id: '3', title: 'System Design Notes', color: 'bg-green-500' },
-      { id: '4', title: 'Biology Research', color: 'bg-yellow-500' }
-    ]
-  },
-  {
-    id: '3',
-    type: 'idea',
-    title: 'Revolutionary Learning Platform Concept',
-    content: `BREAKTHROUGH IDEA at 4 AM! Can't sleep because my mind is racing with this concept for a revolutionary learning platform. It's like Spotify meets Anki meets Mind Palace, but with a crucial twist - it adapts to your brain's natural learning patterns.
-
-    Core Concept:
-    A learning platform that doesn't just present information, but actively maps and adapts to your personal cognitive patterns. It's not about memorization; it's about building natural neural pathways.
-
-    Key Features (brain dump):
-    1. Neural Pattern Mapping
-       - Track how you naturally connect ideas
-       - Identify your peak learning times
-       - Adapt to your attention patterns
-       - Build personalized knowledge graphs
-
-    2. Dynamic Content Adaptation
-       - Content morphs based on your energy levels
-       - Adjusts difficulty in real-time
-       - Integrates with your existing knowledge
-       - Uses your personal interests as anchors
-
-    3. Biological Rhythm Integration
-       - Syncs with your circadian rhythms
-       - Matches content complexity to mental state
-       - Suggests optimal learning windows
-       - Tracks cognitive load patterns
-
-    Why this is different:
-    - Most platforms ignore individual cognitive styles
-    - Traditional spaced repetition is too rigid
-    - Current solutions don't account for mental state
-    - Existing tools lack personal context
-
-    Technical Requirements:
-    - ML models for pattern recognition
-    - Real-time adaptation algorithms
-    - Cognitive load monitoring
-    - Personal knowledge graph database
-    - Biorhythm tracking integration
-
-    Potential Challenges:
-    - Privacy concerns with cognitive data
-    - Complex personalization algorithms
-    - User experience complexity
-    - Data collection methodology
-
-    Market Potential:
-    - Students struggling with traditional methods
-    - Professionals needing continuous learning
-    - Researchers and academics
-    - Anyone with non-traditional learning styles
-
-    Next Steps:
-    1. Prototype core algorithm
-    2. Test with small user group
-    3. Gather cognitive pattern data
-    4. Refine adaptation mechanisms
-
-    This could revolutionize how we approach personal learning. Need to patent this before someone else thinks of it. Setting up a project repository tomorrow and starting on the prototype.
-
-    Random thoughts to explore later:
-    - Integration with smart home devices for environment optimization
-    - Social learning aspects while maintaining personalization
-    - Gamification elements that adapt to motivation patterns
-    - AR/VR possibilities for immersive learning
-
-    This is exactly why I keep a notebook by my bed - these late-night inspirations are gold. Need to flesh this out more tomorrow, but the core idea is solid. This could be the next big thing in edtech.`,
-    timestamp: '4:23 AM',
-    tags: ['Learning', 'Tech', 'AI'],
-    sources: [
-      { id: '5', title: 'EdTech Research', color: 'bg-blue-500' },
-      { id: '6', title: 'Learning Science Papers', color: 'bg-purple-500' }
+      { id: '3', title: 'System Design Notes', color: 'bg-blue-500' },
+      { id: '4', title: 'Biology Research', color: 'bg-green-500' }
     ]
   }
 ];
 
-const FeedCard = ({ item, onUpdate, onChat }: { item: FeedCard; onUpdate: (updatedItem: FeedCard) => void; onChat: (content: string) => void }) => {
+// Memoized markdown component with loading fallback
+const MemoizedMarkdown = memo(({ content, components }: { content: string, components: any }) => (
+  <Suspense fallback={<LoadingCard />}>
+    <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+      {content}
+    </ReactMarkdown>
+  </Suspense>
+));
+
+// Memoized syntax highlighter with loading fallback
+const MemoizedSyntaxHighlighter = memo(({ language, children }: { language: string, children: string }) => (
+  <Suspense fallback={<div className="animate-pulse h-32 bg-black/20 rounded-xl"></div>}>
+    <SyntaxHighlighter
+      style={oneDark}
+      language={language}
+      PreTag="div"
+      className="rounded-2xl !bg-black/30 !p-4 !my-4 backdrop-blur-sm border border-white/[0.08]"
+    >
+      {children}
+    </SyntaxHighlighter>
+  </Suspense>
+));
+
+// Implement pagination for feed items
+const ITEMS_PER_PAGE = 5;
+
+const FeedCard = memo(({ item, onUpdate, onChat }: { item: FeedCard; onUpdate: (updatedItem: FeedCard) => void; onChat: (content: string) => void }) => {
   const [isBookmarked, setIsBookmarked] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
   
-  // Try to parse content as JSON, if it fails, treat it as plain text
-  let parsedContent: any[]
-  try {
-    parsedContent = JSON.parse(item.content)
-  } catch (e) {
-    parsedContent = [{
-      type: 'paragraph',
-      children: [{ text: item.content }]
-    }]
-  }
+  // Use IntersectionObserver for lazy loading
+  const cardRef = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
 
-  // Convert Yoopta content to markdown
-  const markdownContent = parsedContent.map(block => {
-    if (block.type === 'paragraph') {
-      return block.children.map(child => child.text).join('')
-    }
-    if (block.type === 'heading-one') {
-      return '# ' + block.children.map(child => child.text).join('')
-    }
-    if (block.type === 'heading-two') {
-      return '## ' + block.children.map(child => child.text).join('')
-    }
-    if (block.type === 'heading-three') {
-      return '### ' + block.children.map(child => child.text).join('')
-    }
-    if (block.type === 'list' && block.format === 'unordered') {
-      return block.children.map(item => 
-        '- ' + item.children.map((child: any) => child.text).join('')
-      ).join('\n')
-    }
-    if (block.type === 'list' && block.format === 'ordered') {
-      return block.children.map((item, index) => 
-        `${index + 1}. ` + item.children.map((child: any) => child.text).join('')
-      ).join('\n')
-    }
-    if (block.type === 'blockquote') {
-      return '> ' + block.children.map(child => child.text).join('')
-    }
-    if (block.type === 'code') {
-      return '```\n' + block.code + '\n```'
-    }
-    return block.children?.map(child => child.text).join('') || ''
-  }).join('\n\n')
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.1 }
+    )
 
-  const shouldTruncate = markdownContent.length > 700
+    if (cardRef.current) {
+      observer.observe(cardRef.current)
+    }
 
-  const handleSaveContent = (newContent: string) => {
+    return () => observer.disconnect()
+  }, [])
+
+  // Memoize content parsing
+  const { markdownContent, shouldTruncate } = useMemo(() => {
+    let parsedContent: any[]
+    try {
+      parsedContent = JSON.parse(item.content)
+    } catch (e) {
+      parsedContent = [{
+        type: 'paragraph',
+        children: [{ text: item.content }]
+      }]
+    }
+
+    const markdown = parsedContent.map(block => {
+      if (block.type === 'paragraph') {
+        return block.children.map((child: { text: string }) => child.text).join('')
+      }
+      if (block.type === 'heading-one') {
+        return '# ' + block.children.map((child: { text: string }) => child.text).join('')
+      }
+      if (block.type === 'heading-two') {
+        return '## ' + block.children.map((child: { text: string }) => child.text).join('')
+      }
+      if (block.type === 'heading-three') {
+        return '### ' + block.children.map((child: { text: string }) => child.text).join('')
+      }
+      if (block.type === 'list' && block.format === 'unordered') {
+        return block.children.map((item: { children: Array<{ text: string }> }) => 
+          '- ' + item.children.map(child => child.text).join('')
+        ).join('\n')
+      }
+      if (block.type === 'list' && block.format === 'ordered') {
+        return block.children.map((item: { children: Array<{ text: string }> }, index: number) => 
+          `${index + 1}. ` + item.children.map(child => child.text).join('')
+        ).join('\n')
+      }
+      if (block.type === 'blockquote') {
+        return '> ' + block.children.map((child: { text: string }) => child.text).join('')
+      }
+      if (block.type === 'code') {
+        return '```\n' + block.code + '\n```'
+      }
+      return block.children?.map((child: { text: string }) => child.text).join('') || ''
+    }).join('\n\n')
+
+    return {
+      markdownContent: markdown,
+      shouldTruncate: markdown.length > 700
+    }
+  }, [item.content])
+
+  // Memoize markdown components
+  const markdownComponents = useMemo(() => ({
+    code({ node, inline, className, children, ...props }: any) {
+      const match = /language-(\w+)/.exec(className || '')
+      return !inline && match ? (
+        <MemoizedSyntaxHighlighter language={match[1]}>
+          {String(children).replace(/\n$/, '')}
+        </MemoizedSyntaxHighlighter>
+      ) : (
+        <code {...props} className={`${className} bg-black/30 text-white/80 rounded-lg px-2 py-0.5 border border-white/[0.08]`}>
+          {children}
+        </code>
+      )
+    }
+  }), [])
+
+  // Memoize handlers
+  const handleSaveContent = useCallback((newContent: string) => {
     onUpdate({ ...item, content: newContent })
-  }
+  }, [item, onUpdate])
+
+  const handleBookmarkToggle = useCallback(() => {
+    setIsBookmarked(prev => !prev)
+  }, [])
+
+  const handleExpandToggle = useCallback(() => {
+    setIsExpanded(prev => !prev)
+  }, [])
+
+  const handleModalToggle = useCallback(() => {
+    setIsModalOpen(prev => !prev)
+  }, [])
+
+  const handleChat = useCallback(() => {
+    onChat(item.content)
+  }, [item.content, onChat])
 
   return (
-    <>
-      <div 
-        className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-white/50"
-      >
-        <div className="space-y-4">
+    <div ref={cardRef} className="relative">
+      {isVisible ? (
+        <div className="bg-black/20 backdrop-blur-sm rounded-3xl p-6 border border-white/[0.08] transition-shadow hover:shadow-lg will-change-transform">
           {/* Header Section */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className={`p-2 rounded-xl ${getTypeColor(item.type)}`}>
-                {getTypeIcon(item.type)}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded-2xl bg-black/30 border border-white/[0.08]">
+                  {getTypeIcon(item.type)}
+                </div>
+                <h2 className="text-base font-medium text-white/90 line-clamp-1 tracking-tight">{item.title}</h2>
               </div>
-              <div className="flex items-center gap-2">
-                <p className="text-sm text-gray-500 capitalize">{item.type}</p>
+              <div className="flex items-center gap-3">
                 {item.timestamp && (
-                  <>
-                    <span className="text-gray-300">•</span>
-                    <span className="text-sm text-gray-400">{item.timestamp}</span>
-                  </>
+                  <span className="text-xs text-white/40 tabular-nums font-medium">{item.timestamp}</span>
                 )}
-                {/* Minimal Source Indicators */}
-                {item.sources && (
-                  <>
-                    <span className="text-gray-300">•</span>
-                    <div className="flex -space-x-1.5">
-                      {item.sources.map((source, index) => (
+                <button
+                  onClick={handleBookmarkToggle}
+                  className="p-1.5 rounded-xl hover:bg-white/5 transition-colors"
+                >
+                  <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current text-violet-400' : 'text-white/40'}`} />
+                </button>
+              </div>
+            </div>
+
+            {/* Content Section */}
+            <div className={`prose prose-invert prose-sm max-w-none ${!isExpanded && shouldTruncate ? 'line-clamp-4' : ''} text-white/70`}>
+              <MemoizedMarkdown content={markdownContent} components={markdownComponents} />
+            </div>
+
+            {/* Footer Section */}
+            <div className="flex items-center justify-between pt-3 border-t border-white/[0.08]">
+              <div className="flex items-center gap-3">
+                {/* Sources */}
+                {item.sources && item.sources.length > 0 && (
+                  <div className="flex items-center gap-2">
+                    <div className="flex -space-x-2">
+                      {item.sources.map((source) => (
                         <div
-                          key={index}
-                          className={`w-5 h-5 rounded-full ${source.color} text-white flex items-center justify-center text-xs font-medium ring-2 ring-white`}
-                          title={source.title}
+                          key={source.id}
+                          className={`w-6 h-6 rounded-xl ${source.color} flex items-center justify-center text-white text-xs font-medium ring-1 ring-black/20`}
                         >
-                          {index + 1}
+                          {source.title[0]}
                         </div>
                       ))}
                     </div>
-                  </>
+                    <span className="text-xs text-white/40">
+                      {item.sources.length} source{item.sources.length > 1 ? 's' : ''}
+                    </span>
+                  </div>
                 )}
               </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setIsBookmarked(!isBookmarked)}
-                className={`p-2 rounded-lg transition-colors ${
-                  isBookmarked ? 'text-purple-600 bg-purple-50' : 'text-gray-400 hover:bg-gray-50'
-                }`}
-              >
-                <Bookmark className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => onChat(item.content)}
-                className="p-2 rounded-lg text-gray-400 hover:bg-gray-50 transition-colors"
-              >
-                <MessageSquare className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="p-2 rounded-lg text-gray-400 hover:bg-gray-50 transition-colors"
-              >
-                <Maximize2 className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
 
-          <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
-
-          {/* Content Section */}
-          <div className="space-y-3">
-            <div className="prose prose-sm max-w-none text-gray-600">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {shouldTruncate && !isExpanded
-                  ? markdownContent.slice(0, 700) + '...'
-                  : markdownContent}
-              </ReactMarkdown>
-            </div>
-            {shouldTruncate && (
-              <button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700"
-              >
-                {isExpanded ? (
-                  <>
-                    Show less
-                    <ChevronUp className="w-4 h-4" />
-                  </>
-                ) : (
-                  <>
-                    Show more
-                    <ChevronDown className="w-4 h-4" />
-                  </>
+              <div className="flex items-center gap-2">
+                {shouldTruncate && (
+                  <button
+                    onClick={handleExpandToggle}
+                    className="flex items-center gap-1.5 text-xs text-white/40 hover:text-white/60 transition-colors px-3 py-1.5 rounded-full hover:bg-white/5"
+                  >
+                    {isExpanded ? (
+                      <>
+                        <ChevronUp className="w-3.5 h-3.5" />
+                        Show less
+                      </>
+                    ) : (
+                      <>
+                        <ChevronDown className="w-3.5 h-3.5" />
+                        Show more
+                      </>
+                    )}
+                  </button>
                 )}
-              </button>
-            )}
-          </div>
-
-          {item.tags && (
-            <div className="flex flex-wrap gap-2 mt-8">
-              {item.tags.map((tag, tagIndex) => (
-                <span
-                  key={tagIndex}
-                  className={`px-3 py-1 rounded-full text-xs font-medium ${getTagColor(tag)}`}
+                <button
+                  onClick={handleModalToggle}
+                  className="p-1.5 hover:bg-white/5 rounded-xl transition-colors"
                 >
-                  {tag}
-                </span>
-              ))}
+                  <Maximize2 className="w-4 h-4 text-white/40" />
+                </button>
+                <button
+                  onClick={handleChat}
+                  className="flex items-center gap-1.5 px-4 py-1.5 bg-black/30 text-white/90 rounded-full text-xs hover:bg-black/40 transition-colors border border-white/[0.08]"
+                >
+                  <MessageSquare className="w-3.5 h-3.5" />
+                  Chat
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
-          )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <LoadingCard />
+      )}
+    </div>
+  );
+})
 
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title={item.title}
-        content={item.content}
-        onSave={handleSaveContent}
-      />
-    </>
-  )
-}
+// Category type definition
+type Category = 'all' | 'ideas' | 'connections' | 'thoughts' | 'reflections';
 
-const FeedContent = ({ onToggleRightSidebar, onSetChatContent }: { 
+const FeedContent = memo(({ onToggleRightSidebar, onSetChatContent }: { 
   onToggleRightSidebar: () => void
   onSetChatContent: (content: string) => void 
 }) => {
-  const [items, setItems] = useState(demoFeedItems)
+  const [feedItems, setFeedItems] = useState(demoFeedItems)
+  const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState(false)
+  const [activeCategory, setActiveCategory] = useState<Category>('all')
+  const loaderRef = useRef<HTMLDivElement>(null)
 
-  const handleUpdateItem = (updatedItem: FeedCard) => {
-    setItems(items.map(item => 
-      item.id === updatedItem.id ? updatedItem : item
-    ))
-  }
+  // Implement infinite scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        const first = entries[0]
+        if (first.isIntersecting && !loading) {
+          setPage(p => p + 1)
+        }
+      },
+      { threshold: 0.1 }
+    )
 
-  const handleChat = (content: string) => {
-    onSetChatContent(content)
-    onToggleRightSidebar()
-  }
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [loading])
+
+  // Calculate visible items based on current page
+  const visibleItems = useMemo(() => {
+    return feedItems.slice(0, page * ITEMS_PER_PAGE)
+  }, [feedItems, page])
+
+  const handleUpdateItem = useCallback((updatedItem: FeedCard) => {
+    setFeedItems(prev => prev.map(i => i.id === updatedItem.id ? updatedItem : i))
+  }, [])
+
+  // Memoized category buttons to prevent re-renders
+  const categoryButtons = useMemo(() => [
+    { id: 'all' as Category, label: 'All Posts' },
+    { id: 'ideas' as Category, label: 'Ideas' },
+    { id: 'connections' as Category, label: 'Connections' },
+    { id: 'thoughts' as Category, label: 'Thoughts' },
+    { id: 'reflections' as Category, label: 'Reflections' }
+  ], []);
+
+  // Memoized category click handler
+  const handleCategoryClick = useCallback((category: Category) => {
+    setActiveCategory(category);
+    setPage(1); // Reset pagination when changing category
+  }, []);
 
   return (
-    <div className="space-y-4">
-      {items.map((item, index) => (
-        <FeedCard 
-          key={index} 
-          item={item} 
-          onUpdate={handleUpdateItem} 
-          onChat={handleChat}
-        />
-      ))}
+    <div className="min-h-screen">
+      {/* Header Section */}
+      <div className="sticky top-4 z-10 mx-6">
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-black/20 backdrop-blur-sm rounded-full border border-white/[0.08] shadow-sm">
+            <div className="px-6 py-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="bg-black/30 p-2 rounded-full border border-white/[0.08]">
+                    <BookOpen className="w-4 h-4 text-white/90" />
+                  </div>
+                  <h1 className="text-lg font-medium text-white/90">Feed</h1>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 text-sm text-white/60 bg-black/30 rounded-full px-3 py-1 border border-white/[0.08]">
+                    <span className="text-xs">Sort by:</span>
+                    <select className="bg-transparent border-none text-xs focus:outline-none focus:ring-0 text-white/90">
+                      <option>Latest</option>
+                      <option>Most Discussed</option>
+                      <option>Popular</option>
+                    </select>
+                  </div>
+                  <button className="px-4 py-1.5 text-xs font-medium text-white/90 hover:text-white bg-black/30 hover:bg-black/40 rounded-full transition-colors border border-white/[0.08]">
+                    Filter
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-3xl mx-auto px-6 py-8 mt-4">
+        {/* Optimized Categories */}
+        <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2 scrollbar-hide">
+          {categoryButtons.map(({ id, label }) => (
+            <button
+              key={id}
+              onClick={() => handleCategoryClick(id)}
+              className={`category-tab ${activeCategory === id ? 'active' : ''}`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        {/* Feed Items */}
+        {visibleItems.length > 0 ? (
+          <div className="space-y-6">
+            {visibleItems.map((item) => (
+              <Suspense key={item.id} fallback={<LoadingCard />}>
+                <FeedCard
+                  item={item}
+                  onUpdate={handleUpdateItem}
+                  onChat={onSetChatContent}
+                />
+              </Suspense>
+            ))}
+            {visibleItems.length < feedItems.length && (
+              <div ref={loaderRef} className="h-20 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-white/20"></div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="text-center py-16 bg-black/20 rounded-3xl border border-white/[0.08]">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-black/30 flex items-center justify-center border border-white/[0.08]">
+              <RefreshCw className="w-8 h-8 text-white/40" />
+            </div>
+            <h3 className="text-lg font-medium text-white/90 mb-2">No posts yet</h3>
+            <p className="text-sm text-white/60">Start by creating notes and they'll appear here</p>
+          </div>
+        )}
+      </div>
     </div>
   )
-}
+})
 
 interface FeedContentProps {
   content: string
