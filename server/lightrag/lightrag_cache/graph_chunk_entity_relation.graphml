@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d2" for="node" attr.name="source_id" attr.type="string"/>
+<key id="d1" for="node" attr.name="description" attr.type="string"/>
+<key id="d0" for="node" attr.name="entity_type" attr.type="string"/>
+<graph edgedefault="undirected"><node id="&quot;SUPERVISED LEARNING&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Supervised Learning is a machine learning technique where the algorithm learns from labeled training data."</data>
+  <data key="d2">chunk-72a4b1295d55597321c1a3dee50a5d97</data>
+</node>
+<node id="&quot;IMAGE AND SPEECH RECOGNITION&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Image and Speech Recognition are popular applications of machine learning."</data>
+  <data key="d2">chunk-72a4b1295d55597321c1a3dee50a5d97</data>
+</node>
+<node id="&quot;AUTONOMOUS VEHICLES&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Autonomous Vehicles are popular applications of machine learning."</data>
+  <data key="d2">chunk-72a4b1295d55597321c1a3dee50a5d97</data>
+</node>
+<node id="&quot;MACHINE LEARNING&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Machine Learning is a subset of artificial intelligence that enables systems to learn and improve from experience without explicit programming.  It focuses on developing computer programs that can access and learn from data."</data>
+  <data key="d2">chunk-72a4b1295d55597321c1a3dee50a5d97</data>
+</node>
+<node id="&quot;DEEP LEARNING&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Deep Learning is a subset of machine learning based on artificial neural networks."</data>
+  <data key="d2">chunk-72a4b1295d55597321c1a3dee50a5d97</data>
+</node>
+<node id="&quot;RECOMMENDATION SYSTEMS&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Recommendation Systems are popular applications of machine learning."</data>
+  <data key="d2">chunk-72a4b1295d55597321c1a3dee50a5d97</data>
+</node>
+<node id="&quot;COMPANIES DEVELOPING MACHINE LEARNING SYSTEMS&quot;">
+  <data key="d0">"ORGANIZATION"</data>
+  <data key="d1">"A collective of companies that develop and implement machine learning systems; this is an inferred entity based on the text's description of applications."</data>
+  <data key="d2">chunk-72a4b1295d55597321c1a3dee50a5d97</data>
+</node>
+<node id="&quot;UNSUPERVISED LEARNING&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Unsupervised Learning is a machine learning technique where the algorithm finds hidden patterns in unlabeled data."</data>
+  <data key="d2">chunk-72a4b1295d55597321c1a3dee50a5d97</data>
+</node>
+<node id="&quot;NATURAL LANGUAGE PROCESSING&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Natural Language Processing is a popular application of machine learning."</data>
+  <data key="d2">chunk-72a4b1295d55597321c1a3dee50a5d97</data>
+</node>
+<node id="&quot;RESEARCHERS IN MACHINE LEARNING&quot;">
+  <data key="d0">"ORGANIZATION"</data>
+  <data key="d1">"A collective of researchers and developers working in the field of machine learning; this is an inferred entity based on the text's description of the field."</data>
+  <data key="d2">chunk-72a4b1295d55597321c1a3dee50a5d97</data>
+</node>
+</graph></graphml>

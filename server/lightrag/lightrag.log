@@ -1,0 +1,13 @@
+2024-12-09 12:36:24,424 - lightrag - INFO - Logger initialized for working directory: ./lightrag_cache
+2024-12-09 12:36:24,426 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:36:24,426 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:36:24,427 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:37:04,642 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:37:04,922 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:37:04,923 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:37:05,092 - lightrag - INFO - [Entity Extraction]...
+2024-12-09 12:37:14,032 - lightrag - INFO - Inserting entities into storage...
+2024-12-09 12:37:14,045 - lightrag - INFO - Inserting relationships into storage...
+2024-12-09 12:37:14,048 - lightrag - WARNING - Didn't extract any relationships, maybe your LLM is not working
+2024-12-09 12:37:14,050 - lightrag - WARNING - No new entities and relationships found
+2024-12-09 12:37:14,059 - lightrag - INFO - Writing graph with 10 nodes, 0 edges

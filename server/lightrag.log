@@ -1,0 +1,607 @@
+2024-12-09 11:47:16,719 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:47:16,721 - lightrag - INFO - Creating working directory ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:47:16,722 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:47:16,722 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:47:16,722 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:51:14,309 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:51:14,309 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:51:14,309 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:51:14,310 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:52:09,714 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:52:09,714 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:52:09,714 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:52:09,715 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:55:12,588 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:55:12,589 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:55:12,590 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:55:12,590 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:55:12,596 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:17,845 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:55:17,845 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:55:18,994 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:21,495 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:55:21,496 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:55:21,496 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:55:21,496 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:55:21,572 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 11:55:21,591 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:22,759 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:22,759 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:22,816 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:55:22,817 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:55:22,818 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:55:22,821 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:55:22,826 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 11:55:22,837 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:22,865 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:55:22,866 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:55:22,866 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:55:22,866 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:55:22,868 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 11:55:22,873 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:23,018 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:55:23,018 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:55:23,019 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:55:23,020 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:55:23,023 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 11:55:23,030 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:24,157 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:24,158 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:24,209 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:24,209 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:24,310 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:24,342 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:24,348 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:55:24,348 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:55:24,370 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:24,371 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:25,202 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:55:25,205 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:55:25,208 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:55:25,209 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:55:25,217 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 11:55:25,232 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:25,779 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:25,781 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:25,781 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:25,781 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:25,797 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:25,815 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:25,816 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:25,816 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:25,829 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:25,846 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:25,846 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:25,847 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:25,908 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:25,928 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:25,928 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:25,928 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:26,309 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:26,309 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:28,021 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:28,022 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:28,028 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:55:28,028 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:55:28,294 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:28,295 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:28,296 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:28,296 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:28,457 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:28,460 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:28,462 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:28,462 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:28,475 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:28,519 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:28,536 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:28,537 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:28,537 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:29,066 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:29,072 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:29,073 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:29,073 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:29,261 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:29,266 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:29,267 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:29,267 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:29,480 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:29,481 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:29,482 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:29,483 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:29,607 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:29,613 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:29,613 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:29,614 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:29,969 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:30,234 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:30,236 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:30,239 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:55:30,239 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:55:30,448 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:30,453 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:30,454 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:30,454 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:30,547 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:30,548 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:30,551 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:55:30,551 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:55:31,183 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:31,184 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:31,185 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:31,185 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:31,359 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:31,359 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:31,360 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:31,360 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:31,550 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:31,551 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:31,551 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:31,551 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:32,205 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:32,205 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:32,209 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:55:32,213 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:55:32,364 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:32,521 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:32,953 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:32,954 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:32,955 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:32,955 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:34,056 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:34,114 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:34,121 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:34,121 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:35,581 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:41,948 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:55:41,949 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:55:41,949 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:55:41,950 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:55:41,952 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 11:55:41,957 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:42,445 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:42,446 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:43,268 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:43,287 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:43,288 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:43,288 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:44,047 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:44,048 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:44,049 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:44,049 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:44,797 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:44,801 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:44,802 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:44,802 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:44,975 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:55:44,976 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:55:44,977 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:55:44,977 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:55:44,979 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 11:55:44,983 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:45,359 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:45,360 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:45,490 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:45,491 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:45,493 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:45,493 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:46,082 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:46,099 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:46,100 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:46,100 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:46,208 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:46,209 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:46,214 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:55:46,214 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:55:46,938 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:46,941 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:46,944 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:46,944 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:46,959 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:46,962 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:46,965 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:46,966 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:47,928 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:47,932 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:47,934 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:47,934 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:48,238 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:48,238 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:48,239 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:48,239 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:48,948 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:48,966 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:48,969 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:48,971 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:48,972 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:49,736 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:49,737 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:49,738 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:49,738 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:50,637 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:50,641 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:50,649 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:55:50,649 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:55:51,568 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:51,569 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:51,572 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:51,572 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:52,514 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:55:52,514 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:55:52,516 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:55:52,516 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:55:53,107 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:56:00,463 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:56:00,464 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:56:00,464 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:56:00,464 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:56:00,467 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 11:56:00,472 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:56:00,897 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:56:00,897 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:56:01,618 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:56:01,637 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:56:01,637 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:56:01,638 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:56:02,388 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:56:02,389 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:56:02,390 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:56:02,390 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:56:03,373 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:56:03,377 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:56:03,378 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:56:03,378 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:56:04,109 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:56:04,111 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:56:04,119 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:56:04,120 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:56:04,773 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:56:41,811 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:56:41,812 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:56:41,813 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:56:41,813 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:56:41,815 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 11:56:41,821 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:56:42,128 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:56:42,128 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:56:43,280 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:56:43,321 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:56:43,330 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:56:43,330 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:56:44,164 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:56:44,165 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:56:44,165 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:56:44,166 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:56:45,181 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:57:01,307 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:57:01,308 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:57:01,308 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:57:01,308 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:57:01,310 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 11:57:01,312 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:57:01,312 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:57:01,312 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:57:01,313 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:57:01,314 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 11:57:01,318 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:57:01,318 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:57:01,717 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:57:01,717 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:57:01,717 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:57:01,717 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:57:02,913 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:57:02,932 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:57:02,934 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:57:02,938 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:57:02,939 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:57:02,952 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:57:02,957 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:57:02,957 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:57:03,808 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:57:03,835 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:57:04,039 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:57:04,039 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:57:04,040 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:57:04,040 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:57:04,042 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 11:57:04,049 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:57:04,561 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:57:04,561 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:57:05,348 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:57:05,393 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:57:05,402 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:57:05,402 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:57:12,035 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:57:12,038 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:57:12,040 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:57:12,040 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:57:12,871 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:57:12,871 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:57:12,872 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:57:12,873 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:57:13,542 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:59:55,564 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:59:55,564 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:59:55,565 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:59:55,565 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:59:55,566 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 11:59:55,568 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:59:55,582 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 11:59:55,582 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 11:59:55,582 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 11:59:55,583 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 11:59:55,584 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 11:59:55,585 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:59:55,952 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:59:55,952 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:59:55,970 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:59:55,970 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:59:56,799 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:59:56,829 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:59:56,834 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:59:56,834 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:59:57,024 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:59:57,067 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:59:57,075 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 11:59:57,076 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 11:59:57,991 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:59:57,994 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:59:57,994 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:59:57,995 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:59:58,097 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:59:58,099 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 11:59:58,100 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 11:59:58,100 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 11:59:59,046 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 11:59:59,176 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:00:43,890 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:00:43,891 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:00:43,891 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:00:43,892 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:00:43,895 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:00:43,902 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:00:44,204 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:00:44,204 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:00:45,016 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:05:51,284 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:05:51,284 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:05:51,284 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:05:51,285 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:05:51,286 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:05:51,291 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:05:51,585 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:05:51,585 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:05:52,409 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:06:47,819 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:06:47,820 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:06:47,821 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:06:47,821 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:06:47,822 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:06:47,827 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:06:48,128 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:06:48,129 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:06:49,311 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:08:57,459 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:08:57,459 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:08:57,459 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:08:57,459 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:08:57,460 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:08:57,460 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:08:57,463 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:08:57,463 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:08:57,472 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:08:57,890 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:08:57,891 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:08:59,127 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:08:59,201 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:08:59,203 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:08:59,203 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:09:00,052 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:09:00,053 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:09:00,054 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:09:00,054 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:09:00,785 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:09:00,794 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:09:00,796 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 12:09:00,796 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 12:09:01,484 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:09:01,485 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:09:01,486 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:09:01,487 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:09:02,260 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:09:08,624 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:09:08,624 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:09:08,625 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:09:08,625 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:09:08,627 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:09:08,630 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:09:08,962 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:09:08,962 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:09:09,984 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:11:16,479 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:11:16,480 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:11:16,480 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:11:16,480 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:11:16,486 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:11:16,493 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:11:17,299 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:11:17,299 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:11:18,093 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:15:07,091 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:15:07,091 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:15:07,092 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:15:07,092 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:15:07,092 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:15:07,093 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:15:07,093 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:15:07,093 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:15:07,093 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:15:07,093 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:15:07,096 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:15:07,096 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:15:07,103 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:15:07,103 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:15:07,600 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:15:07,600 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:15:07,600 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:15:07,600 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:15:07,600 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:15:08,441 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:15:08,446 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:15:08,446 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:15:08,446 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:15:08,475 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:15:08,499 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:15:08,501 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:15:08,502 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:15:08,502 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:15:09,186 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:15:09,187 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:15:09,188 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:15:09,188 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:15:09,215 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:15:09,217 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:15:09,217 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:15:09,217 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:15:09,890 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:15:09,893 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:15:09,896 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:15:09,896 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:15:10,075 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:15:10,080 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:15:10,083 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:15:10,083 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:15:10,633 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:15:10,636 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:15:10,638 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:15:10,638 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:15:10,845 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:15:10,848 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:15:10,852 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:15:10,853 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:15:11,581 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:15:11,651 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:16:10,914 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:16:10,915 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:16:10,915 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:16:10,915 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:16:10,916 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:16:10,917 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:16:10,917 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:16:10,917 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:16:10,917 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:16:10,919 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:16:10,922 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:16:10,945 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:16:11,257 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:16:11,257 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:16:11,275 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:16:11,275 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:16:13,110 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:16:13,114 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:16:13,116 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:16:13,117 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:16:13,161 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:16:13,903 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:16:13,903 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:16:13,904 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:16:13,904 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:16:14,492 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:16:14,504 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:16:14,511 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:16:14,511 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:16:15,811 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:16:15,814 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:16:15,815 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:16:15,816 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:16:16,563 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:17:24,221 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:17:24,222 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:17:24,222 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:17:24,222 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:17:24,223 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:17:24,225 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:17:24,517 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:17:24,517 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:17:25,203 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:18:28,329 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:18:28,330 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:18:28,330 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:18:28,331 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:18:28,332 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:18:28,335 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:18:28,640 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:18:28,640 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:18:29,294 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:20:30,387 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:20:30,387 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:20:30,388 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:20:30,388 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:20:30,397 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:20:30,401 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:20:30,703 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:20:30,703 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:20:31,657 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:21:51,675 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:21:51,676 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:21:51,676 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:21:51,676 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:21:51,678 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:21:51,680 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:21:51,971 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:21:51,971 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:21:52,807 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:23:40,277 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:23:40,278 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:23:40,278 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:23:40,278 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:23:40,280 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:23:40,283 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:23:40,590 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:23:40,590 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:23:41,424 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:24:44,102 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:24:44,103 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:24:44,103 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:24:44,103 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:24:44,105 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:24:44,108 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:24:44,488 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:24:44,488 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:24:45,652 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:27:13,909 - lightrag - INFO - Logger initialized for working directory: ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13
+2024-12-09 12:27:13,909 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-09 12:27:13,909 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-09 12:27:13,909 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-09 12:27:13,911 - lightrag - INFO - Loaded graph from ./rag_data/Ugi0DDd3Jje9NtmeNi4DI6MIGC13\graph_chunk_entity_relation.graphml with 0 nodes, 0 edges
+2024-12-09 12:27:13,917 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:27:14,216 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:27:14,216 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:27:15,237 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:27:15,279 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:27:15,280 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:27:15,280 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:27:15,929 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:27:15,931 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:27:15,933 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:27:15,934 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:27:16,757 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:27:16,762 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:27:16,763 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:27:16,763 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:27:17,529 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:27:17,531 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:27:17,534 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:27:17,534 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:27:18,498 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:27:18,498 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:27:18,499 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:27:18,499 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:27:19,353 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:27:19,354 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:27:19,359 - lightrag - INFO - [New Chunks] inserting 2 chunks
+2024-12-09 12:27:19,360 - lightrag - INFO - Inserting 2 vectors to chunks
+2024-12-09 12:27:20,149 - lightrag - INFO - Writing graph with 0 nodes, 0 edges
+2024-12-09 12:27:20,151 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-09 12:27:20,154 - lightrag - INFO - [New Chunks] inserting 1 chunks
+2024-12-09 12:27:20,154 - lightrag - INFO - Inserting 1 vectors to chunks
+2024-12-09 12:27:21,054 - lightrag - INFO - Writing graph with 0 nodes, 0 edges

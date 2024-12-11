@@ -1,159 +1,242 @@
 import express from 'express';
 import cors from 'cors';
-import { spawn } from 'child_process';
-import path from 'path';
-import fs from 'fs';
-import { v4 as uuidv4 } from 'uuid';
 import compression from 'compression';
-import NodeCache from 'node-cache';
+import { PythonShell } from 'python-shell';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 const app = express();
 app.use(cors());
-app.use(compression()); // Enable gzip compression
+app.use(compression() as express.RequestHandler);
 app.use(express.json());
 
 const PORT = process.env.PORT || 3001;
 
-// Initialize cache with 5 minutes TTL
-const cache = new NodeCache({ stdTTL: 300 });
+// Create persistent Python shell for RAG service
+let serviceShell: PythonShell | null = null;
+let serverReady = false;
 
-// Get the project root directory (one level up from server)
-const projectRoot = path.join(__dirname, '..');
-
-// Ensure temp directory exists
-const tempDir = path.join(projectRoot, 'temp');
-if (!fs.existsSync(tempDir)) {
-  fs.mkdirSync(tempDir);
-}
-
-// Helper function to generate cache key
-const generateCacheKey = (documents: any[], question: string): string => {
-  const hash = require('crypto')
-    .createHash('md5')
-    .update(JSON.stringify({ documents, question }))
-    .digest('hex');
-  return `rag_${hash}`;
-};
-
-// RAG endpoint with caching
-app.post('/api/rag', async (req, res) => {
-  const { documents, question } = req.body;
-  const cacheKey = generateCacheKey(documents, question);
-
-  // Check cache first
-  const cachedResult = cache.get(cacheKey);
-  if (cachedResult) {
-    console.log('Cache hit for:', cacheKey);
-    return res.json(cachedResult);
-  }
-
-  const requestId = uuidv4();
-  const inputFile = path.join(tempDir, `input_${requestId}.json`);
-  const outputFile = path.join(tempDir, `output_${requestId}.json`);
-
+const initializeService = async (): Promise<void> => {
+  console.log('🚀 Initializing RAG service...');
   try {
-    // Write input data to temporary file
-    fs.writeFileSync(inputFile, JSON.stringify({ documents, question }), 'utf8');
-
-    // Path to the Python virtual environment and script
-    const pythonPath = path.join(projectRoot, 'longrag', 'venv', 'Scripts', 'python.exe');
-    const scriptPath = path.join(projectRoot, 'longrag', 'test_custom_docs.py');
-
-    // Ensure Python executable exists
-    if (!fs.existsSync(pythonPath)) {
-      throw new Error(`Python executable not found at: ${pythonPath}`);
+    // First run the initialization script and wait for it to complete
+    const initResults = await PythonShell.run('haystack_rag/initialize_service.py', { 
+      pythonPath: 'python',
+      pythonOptions: ['-u']
+    });
+    
+    // Check initialization result
+    const initResult = JSON.parse(initResults[0]);
+    if (initResult.status !== 'ready') {
+      throw new Error(initResult.error || 'Initialization failed');
     }
-
-    // Ensure Python script exists
-    if (!fs.existsSync(scriptPath)) {
-      throw new Error(`Python script not found at: ${scriptPath}`);
-    }
-
-    // Spawn Python process with resource limits
-    const pythonProcess = spawn(pythonPath, [
-      scriptPath,
-      '--input', inputFile,
-      '--output', outputFile
-    ], {
-      // Set resource limits
-      timeout: 30000, // 30 seconds timeout
-    });
-
-    let outputData = '';
-    let errorData = '';
-
-    pythonProcess.stdout.on('data', (data) => {
-      outputData += data;
-    });
-
-    pythonProcess.stderr.on('data', (data) => {
-      console.error('Python error:', data.toString());
-      errorData += data;
-    });
-
-    pythonProcess.on('close', async (code) => {
-      try {
-        // Clean up input file
-        if (fs.existsSync(inputFile)) {
-          fs.unlinkSync(inputFile);
-        }
-
-        if (code !== 0) {
-          console.error('Python process exited with code:', code);
-          res.status(500).json({ error: `Python process failed: ${errorData}` });
-          return;
-        }
-
-        // Read the output file
-        if (!fs.existsSync(outputFile)) {
-          throw new Error('Output file not found');
-        }
-
-        const results = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
-        const result = results[0]; // We only sent one question
-
-        // Clean up output file
-        fs.unlinkSync(outputFile);
-
-        // Cache the result
-        const response = {
-          long_ans: result.long_ans,
-          short_ans: result.short_ans,
-          context_titles: result.context_titles
-        };
-        cache.set(cacheKey, response);
-
-        res.json(response);
-      } catch (error) {
-        console.error('Error processing results:', error);
-        res.status(500).json({ error: 'Failed to process results' });
+    
+    console.log('✅ Model initialized successfully');
+    
+    // Then create persistent shell for service manager
+    serviceShell = new PythonShell('haystack_rag/service_manager.py', {
+      mode: 'text',
+      pythonPath: 'python',
+      pythonOptions: ['-u'],
+      scriptPath: '.',
+      env: {
+        ...process.env,
+        PYTHONPATH: process.env.PYTHONPATH || '',
+        GOOGLE_API_KEY: process.env.GOOGLE_API_KEY
       }
     });
 
-    // Handle process timeout
-    pythonProcess.on('timeout', () => {
-      pythonProcess.kill();
-      res.status(504).json({ error: 'Processing timeout' });
+    // Handle any errors
+    serviceShell.on('error', (err) => {
+      console.error('❌ Service shell error:', err);
+      serviceShell = null;
+      serverReady = false;
+    });
+
+    // Handle process exit
+    serviceShell.on('close', () => {
+      console.log('⚠️ Service shell closed, will reinitialize on next request');
+      serviceShell = null;
+      serverReady = false;
+    });
+
+    // Wait for service manager to be ready
+    await new Promise<void>((resolve, reject) => {
+      if (!serviceShell) {
+        reject(new Error('Service shell not created'));
+        return;
+      }
+
+      const timeoutId = setTimeout(() => {
+        reject(new Error('Service manager initialization timed out'));
+      }, 30000);
+
+      serviceShell.once('message', (message) => {
+        try {
+          const response = JSON.parse(message);
+          if (response.status === 'ready') {
+            clearTimeout(timeoutId);
+            console.log('✅ Service manager ready');
+            serverReady = true;
+            resolve();
+          } else {
+            reject(new Error(`Service manager error: ${response.error || 'Unknown error'}`));
+          }
+        } catch (error) {
+          reject(new Error(`Invalid service manager response: ${message}`));
+        }
+      });
+
+      serviceShell.once('error', (error) => {
+        clearTimeout(timeoutId);
+        reject(error);
+      });
     });
 
   } catch (error) {
-    console.error('Error in RAG endpoint:', error);
-    // Clean up files in case of error
-    if (fs.existsSync(inputFile)) {
-      fs.unlinkSync(inputFile);
-    }
-    if (fs.existsSync(outputFile)) {
-      fs.unlinkSync(outputFile);
-    }
-    res.status(500).json({ error: 'Internal server error' });
+    console.error('❌ Error initializing RAG service:', error);
+    throw error;
   }
-});
+};
 
-// Health check endpoint
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
-});
+// Helper function to ensure service is running
+const ensureService = async () => {
+  if (!serverReady || !serviceShell) {
+    await initializeService();
+  }
+  return serviceShell;
+};
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+// Helper function to execute command
+const executeCommand = async (command: string, ...args: string[]): Promise<any> => {
+  if (!serverReady) {
+    throw new Error('Server not ready. Please wait for initialization to complete.');
+  }
+
+  const shell = await ensureService();
+  if (!shell) {
+    throw new Error('Failed to initialize service');
+  }
+
+  return new Promise((resolve, reject) => {
+    let responseReceived = false;
+    const timeoutId = setTimeout(() => {
+      if (!responseReceived) {
+        shell.removeAllListeners('message');
+        shell.removeAllListeners('error');
+        reject(new Error('Command timed out'));
+      }
+    }, 30000); // 30 second timeout
+
+    const handleMessage = (message: string) => {
+      try {
+        clearTimeout(timeoutId);
+        responseReceived = true;
+        shell.removeAllListeners('message');
+        shell.removeAllListeners('error');
+        const response = JSON.parse(message);
+        resolve(response);
+      } catch (error) {
+        reject(error);
+      }
+    };
+
+    const handleError = (error: Error) => {
+      clearTimeout(timeoutId);
+      responseReceived = true;
+      shell.removeAllListeners('message');
+      shell.removeAllListeners('error');
+      reject(error);
+    };
+
+    try {
+      const commandStr = JSON.stringify([command, ...args]);
+      console.log('📤 Sending command:', commandStr);
+      shell.on('message', handleMessage);
+      shell.on('error', handleError);
+      shell.send(commandStr);
+    } catch (error) {
+      handleError(error as Error);
+    }
+  });
+};
+
+// Initialize service before starting server
+console.log('🌟 Starting server...');
+initializeService().then(() => {
+  // API endpoint to sync all notes for a user
+  app.post('/api/rag/sync', async (req, res) => {
+    try {
+      const { userId, notes } = req.body;
+      const result = await executeCommand('sync', userId, JSON.stringify(notes));
+      if (result.success) {
+        res.json({ success: true, message: result.message });
+      } else {
+        throw new Error(result.error);
+      }
+    } catch (error) {
+      console.error('Error syncing notes:', error);
+      res.status(500).json({ error: 'Failed to sync notes' });
+    }
+  });
+
+  // API endpoint to add a single note
+  app.post('/api/rag/insert', async (req, res) => {
+    try {
+      const { userId, notes } = req.body;
+      const result = await executeCommand('insert', userId, JSON.stringify(notes));
+      if (result.success) {
+        res.json({ success: true, message: result.message });
+      } else {
+        throw new Error(result.error);
+      }
+    } catch (error) {
+      console.error('Error inserting notes:', error);
+      res.status(500).json({ error: 'Failed to insert notes' });
+    }
+  });
+
+  // API endpoint to query the knowledge base
+  app.post('/api/rag/query', async (req, res) => {
+    try {
+      const { userId, query } = req.body;
+      const result = await executeCommand('query', userId, query);
+      if (result.error) {
+        throw new Error(result.error);
+      }
+      res.json(result);
+    } catch (error) {
+      console.error('Error querying notes:', error);
+      res.status(500).json({ error: 'Failed to query notes' });
+    }
+  });
+
+  app.post('/api/notes/delete', async (req, res) => {
+    try {
+      const { userId, noteId } = req.body;
+      if (!userId || !noteId) {
+        return res.status(400).json({ error: 'Missing required parameters' });
+      }
+
+      // Delete from Haystack service
+      const result = await executeCommand('delete', userId, noteId);
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to delete document from Haystack');
+      }
+
+      return res.json({ success: true, message: 'Note deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting note:', error);
+      return res.status(500).json({ error: 'Failed to delete note' });
+    }
+  });
+
+  app.listen(PORT, () => {
+    console.log(`✨ Server is running on port ${PORT}`);
+  });
+}).catch((error) => {
+  console.error('❌ Failed to start server:', error);
+  process.exit(1);
 });

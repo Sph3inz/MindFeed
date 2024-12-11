@@ -1,7 +1,7 @@
 import { Lightbulb, Network, Brain, BookOpen, RefreshCw, Bookmark, ChevronDown, ChevronUp, Maximize2, MessageSquare, ArrowRight } from 'lucide-react'
 import { useState, useMemo, useCallback, memo, useRef, Suspense, lazy, useEffect } from 'react'
-import Modal from './Modal'
-import React from 'react'
+import { useAuth } from '../contexts/AuthContext'
+import { generateFeedPosts } from '../services/feedService'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
@@ -68,77 +68,6 @@ const getTagColor = (tag: string) => {
       return 'bg-slate-50 text-slate-600'
   }
 }
-
-const demoFeedItems: FeedCard[] = [
-  {
-    id: '1',
-    type: 'thought',
-    title: 'Late Night Thoughts on AI and Consciousness',
-    content: `Just had a fascinating late-night reflection on AI and consciousness. The way we're approaching AI development might need a paradigm shift - instead of forcing rigid, computer-like thinking, what if we embraced the beautiful chaos of human cognition?
-
-Key insights:
-- Our brains work in non-linear, organic patterns
-- Creativity often emerges from "messy" thinking
-- Perfect logic might be limiting true intelligence
-- Emotional context matters in decision making
-
-Research directions to explore:
-- Neural plasticity in AI systems
-- Emotional memory encoding
-- Controlled randomness as a feature
-- AI sleep cycles and learning
-
-Questions to ponder:
-1. How do we measure "human-like" thinking?
-2. Is perfect recall actually beneficial?
-3. Can controlled chaos improve creativity?
-4. What role do emotions play in intelligence?
-
-Need to flesh this out more tomorrow, but there might be something revolutionary here.`,
-    timestamp: '3:47 AM',
-    tags: ['AI', 'Tech', 'Learning'],
-    sources: [
-      { id: '1', title: 'Late Night Research Notes', color: 'bg-purple-500' },
-      { id: '2', title: 'AI Development Journal', color: 'bg-blue-500' }
-    ]
-  },
-  {
-    id: '2',
-    type: 'connection',
-    title: 'Nature-Inspired System Design',
-    content: `Made an interesting connection between biological systems and software architecture. Nature might have already solved our scaling problems!
-
-Key Parallels:
-1. Load Balancing
-   - Ant colonies use dynamic trail systems
-   - Could inspire better request routing
-   - Natural load distribution patterns
-
-2. Fault Tolerance
-   - Natural redundancy in species
-   - Self-healing mechanisms
-   - Adaptive recovery systems
-
-3. Communication
-   - Hormone signaling systems
-   - Event-driven patterns
-   - Priority-based messaging
-
-Next Steps:
-- Research swarm intelligence
-- Study biological scaling
-- Prototype nature-inspired algorithms
-- Test in small-scale systems
-
-This could revolutionize how we design distributed systems. Nature's been perfecting these patterns for millions of years!`,
-    timestamp: '2:15 PM',
-    tags: ['Tech', 'Learning'],
-    sources: [
-      { id: '3', title: 'System Design Notes', color: 'bg-blue-500' },
-      { id: '4', title: 'Biology Research', color: 'bg-green-500' }
-    ]
-  }
-];
 
 // Memoized markdown component with loading fallback
 const MemoizedMarkdown = memo(({ content, components }: { content: string, components: any }) => (
@@ -317,19 +246,17 @@ const FeedCard = memo(({ item, onUpdate, onChat }: { item: FeedCard; onUpdate: (
                 {/* Sources */}
                 {item.sources && item.sources.length > 0 && (
                   <div className="flex items-center gap-2">
-                    <div className="flex -space-x-2">
+                    <div className="flex items-center gap-1.5">
                       {item.sources.map((source) => (
                         <div
                           key={source.id}
-                          className={`w-6 h-6 rounded-xl ${source.color} flex items-center justify-center text-white text-xs font-medium ring-1 ring-black/20`}
+                          className="px-2 py-1 rounded-full bg-black/30 border border-white/[0.08] flex items-center gap-1.5 group-hover:bg-black/40 transition-colors"
                         >
-                          {source.title[0]}
+                          <div className={`w-2 h-2 rounded-full ${source.color}`} />
+                          <span className="text-xs text-white/60">{source.title}</span>
                         </div>
                       ))}
                     </div>
-                    <span className="text-xs text-white/40">
-                      {item.sources.length} source{item.sources.length > 1 ? 's' : ''}
-                    </span>
                   </div>
                 )}
               </div>
@@ -382,44 +309,50 @@ const FeedCard = memo(({ item, onUpdate, onChat }: { item: FeedCard; onUpdate: (
 type Category = 'all' | 'ideas' | 'connections' | 'thoughts' | 'reflections';
 
 const FeedContent = memo(({ onToggleRightSidebar, onSetChatContent }: { 
-  onToggleRightSidebar: () => void
-  onSetChatContent: (content: string) => void 
+  onToggleRightSidebar: () => void;
+  onSetChatContent: (content: string) => void;
 }) => {
-  const [feedItems, setFeedItems] = useState(demoFeedItems)
-  const [page, setPage] = useState(1)
-  const [loading, setLoading] = useState(false)
-  const [activeCategory, setActiveCategory] = useState<Category>('all')
-  const loaderRef = useRef<HTMLDivElement>(null)
+  const { user } = useAuth();
+  const [feedItems, setFeedItems] = useState<FeedCard[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<Category>('all');
 
-  // Implement infinite scroll
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        const first = entries[0]
-        if (first.isIntersecting && !loading) {
-          setPage(p => p + 1)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (loaderRef.current) {
-      observer.observe(loaderRef.current)
+  // Load feed posts
+  const loadFeedPosts = useCallback(async () => {
+    if (!user) return;
+    
+    try {
+      setLoading(true);
+      setError(null);
+      const posts = await generateFeedPosts(user.uid);
+      setFeedItems(posts);
+    } catch (error) {
+      console.error('Error loading feed posts:', error);
+      setError('Failed to load feed posts. Please try again.');
+    } finally {
+      setLoading(false);
     }
+  }, [user]);
 
-    return () => observer.disconnect()
-  }, [loading])
+  // Load posts on mount and when user changes
+  useEffect(() => {
+    loadFeedPosts();
+  }, [loadFeedPosts]);
 
-  // Calculate visible items based on current page
-  const visibleItems = useMemo(() => {
-    return feedItems.slice(0, page * ITEMS_PER_PAGE)
-  }, [feedItems, page])
+  // Filter posts by category
+  const filteredPosts = useMemo(() => {
+    if (activeCategory === 'all') return feedItems;
+    return feedItems.filter(item => {
+      const itemType = item.type === 'idea' ? 'ideas' :
+                      item.type === 'connection' ? 'connections' :
+                      item.type === 'thought' ? 'thoughts' :
+                      'reflections';
+      return itemType === activeCategory;
+    });
+  }, [feedItems, activeCategory]);
 
-  const handleUpdateItem = useCallback((updatedItem: FeedCard) => {
-    setFeedItems(prev => prev.map(i => i.id === updatedItem.id ? updatedItem : i))
-  }, [])
-
-  // Memoized category buttons to prevent re-renders
+  // Memoized category buttons
   const categoryButtons = useMemo(() => [
     { id: 'all' as Category, label: 'All Posts' },
     { id: 'ideas' as Category, label: 'Ideas' },
@@ -431,7 +364,10 @@ const FeedContent = memo(({ onToggleRightSidebar, onSetChatContent }: {
   // Memoized category click handler
   const handleCategoryClick = useCallback((category: Category) => {
     setActiveCategory(category);
-    setPage(1); // Reset pagination when changing category
+  }, []);
+
+  const handleUpdateItem = useCallback((updatedItem: FeedCard) => {
+    setFeedItems(prev => prev.map(i => i.id === updatedItem.id ? updatedItem : i));
   }, []);
 
   return (
@@ -449,16 +385,12 @@ const FeedContent = memo(({ onToggleRightSidebar, onSetChatContent }: {
                   <h1 className="text-lg font-medium text-white/90">Feed</h1>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-2 text-sm text-white/60 bg-black/30 rounded-full px-3 py-1 border border-white/[0.08]">
-                    <span className="text-xs">Sort by:</span>
-                    <select className="bg-transparent border-none text-xs focus:outline-none focus:ring-0 text-white/90">
-                      <option>Latest</option>
-                      <option>Most Discussed</option>
-                      <option>Popular</option>
-                    </select>
-                  </div>
-                  <button className="px-4 py-1.5 text-xs font-medium text-white/90 hover:text-white bg-black/30 hover:bg-black/40 rounded-full transition-colors border border-white/[0.08]">
-                    Filter
+                  <button 
+                    onClick={loadFeedPosts}
+                    className="flex items-center gap-2 px-4 py-1.5 text-xs font-medium text-white/90 hover:text-white bg-black/30 hover:bg-black/40 rounded-full transition-colors border border-white/[0.08]"
+                  >
+                    <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
+                    Refresh
                   </button>
                 </div>
               </div>
@@ -469,23 +401,42 @@ const FeedContent = memo(({ onToggleRightSidebar, onSetChatContent }: {
 
       {/* Main Content */}
       <div className="max-w-3xl mx-auto px-6 py-8 mt-4">
-        {/* Optimized Categories */}
+        {/* Categories */}
         <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2 scrollbar-hide">
           {categoryButtons.map(({ id, label }) => (
             <button
               key={id}
               onClick={() => handleCategoryClick(id)}
-              className={`category-tab ${activeCategory === id ? 'active' : ''}`}
+              className={`px-4 py-1.5 text-sm rounded-full border transition-all duration-200
+                ${activeCategory === id 
+                  ? 'bg-white/10 text-white border-white/20' 
+                  : 'text-white/60 border-transparent hover:text-white/80 hover:bg-white/5'}`}
             >
               {label}
             </button>
           ))}
         </div>
 
-        {/* Feed Items */}
-        {visibleItems.length > 0 ? (
+        {/* Error State */}
+        {error && (
+          <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-4 mb-6">
+            <p className="text-red-500 text-sm">{error}</p>
+          </div>
+        )}
+
+        {/* Loading State */}
+        {loading && (
           <div className="space-y-6">
-            {visibleItems.map((item) => (
+            {[1, 2, 3].map((i) => (
+              <LoadingCard key={i} />
+            ))}
+          </div>
+        )}
+
+        {/* Feed Items */}
+        {!loading && filteredPosts.length > 0 ? (
+          <div className="space-y-6">
+            {filteredPosts.map((item) => (
               <Suspense key={item.id} fallback={<LoadingCard />}>
                 <FeedCard
                   item={item}
@@ -494,13 +445,8 @@ const FeedContent = memo(({ onToggleRightSidebar, onSetChatContent }: {
                 />
               </Suspense>
             ))}
-            {visibleItems.length < feedItems.length && (
-              <div ref={loaderRef} className="h-20 flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-white/20"></div>
-              </div>
-            )}
           </div>
-        ) : (
+        ) : !loading && (
           <div className="text-center py-16 bg-black/20 rounded-3xl border border-white/[0.08]">
             <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-black/30 flex items-center justify-center border border-white/[0.08]">
               <RefreshCw className="w-8 h-8 text-white/40" />
@@ -511,8 +457,8 @@ const FeedContent = memo(({ onToggleRightSidebar, onSetChatContent }: {
         )}
       </div>
     </div>
-  )
-})
+  );
+});
 
 interface FeedContentProps {
   content: string

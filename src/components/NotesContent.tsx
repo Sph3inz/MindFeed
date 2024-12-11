@@ -140,7 +140,10 @@ export default function NotesContent({ onSetChatContent }: { onSetChatContent: (
       
       try {
         const fetchedNotes = await getNotes(user.uid);
-        setNotes(fetchedNotes as Note[]);
+        // Ensure no duplicate IDs by using a Map
+        const uniqueNotes = new Map();
+        fetchedNotes.forEach(note => uniqueNotes.set(note.id, note));
+        setNotes(Array.from(uniqueNotes.values()) as Note[]);
       } catch (error) {
         console.error('Error loading notes:', error);
       }
@@ -179,9 +182,8 @@ export default function NotesContent({ onSetChatContent }: { onSetChatContent: (
         return;
       }
 
-      // Delete from Firebase
-      const noteRef = doc(db, 'notes', noteId);
-      await deleteDoc(noteRef);
+      // Delete from both Firebase and Haystack
+      await deleteNote(noteId, user.uid);
       
       // Update local state
       setNotes(prev => prev.filter(note => note.id !== noteId));
@@ -192,7 +194,7 @@ export default function NotesContent({ onSetChatContent }: { onSetChatContent: (
   };
 
   const handleSaveNote = async (content: string) => {
-    if (!content.trim()) return;
+    if (!content.trim() || !user) return;
     
     try {
       const newNote = await addNote({
@@ -202,8 +204,9 @@ export default function NotesContent({ onSetChatContent }: { onSetChatContent: (
           date: new Date().toISOString(),
           tag: 'Note'
         }
-      }, user!.uid);
-      setNotes(prev => [newNote as Note, ...prev]);
+      }, user.uid);
+
+      setNotes(prev => [newNote, ...prev]);
 
       if (editor) {
         editor.commands.setContent('');
@@ -214,6 +217,8 @@ export default function NotesContent({ onSetChatContent }: { onSetChatContent: (
   };
 
   const handleFocusSave = async (content: string) => {
+    if (!user) return;
+    
     try {
       const newNote = await addNote({
         title: 'Focused Note',
@@ -222,8 +227,10 @@ export default function NotesContent({ onSetChatContent }: { onSetChatContent: (
           date: new Date().toISOString(),
           tag: 'Focus'
         }
-      }, user!.uid);
-      setNotes(prev => [newNote as Note, ...prev]);
+      }, user.uid);
+
+      setNotes(prev => [newNote, ...prev]);
+      setIsFocusMode(false);
     } catch (error) {
       console.error('Error saving focused note:', error);
     }
@@ -255,7 +262,11 @@ export default function NotesContent({ onSetChatContent }: { onSetChatContent: (
   const handleTopOfMind = (noteId: string) => {
     const note = notes.find(n => n.id === noteId);
     if (note) {
-      setNotes(prev => [note, ...prev.filter(n => n.id !== noteId)]);
+      // Ensure no duplicates when reordering
+      setNotes(prev => {
+        const filtered = prev.filter(n => n.id !== noteId);
+        return [note, ...filtered];
+      });
       setContextMenu(null);
     }
   };
@@ -329,14 +340,14 @@ export default function NotesContent({ onSetChatContent }: { onSetChatContent: (
               note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
               note.content.toLowerCase().includes(searchQuery.toLowerCase())
             )
-            .map((note) => {
+            .map((note, index) => {
               const temp = document.createElement('div');
               temp.innerHTML = note.content;
               const hasImage = temp.querySelector('img') !== null;
 
               return (
                 <div 
-                  key={note.id} 
+                  key={`${note.id}-${index}`}
                   className="mb-4 relative group"
                   onClick={() => {
                     setFocusedNote(note);
@@ -386,10 +397,10 @@ export default function NotesContent({ onSetChatContent }: { onSetChatContent: (
                     <div className="flex items-center justify-between pt-3 mt-4 border-t border-white/[0.08]">
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-white/40 tabular-nums font-medium">
-                          {new Date(note.metadata?.date).toLocaleDateString()}
+                          {note.metadata?.date ? new Date(note.metadata.date).toLocaleDateString() : 'No date'}
                         </span>
                         <span className="px-2 py-0.5 rounded-full bg-black/30 text-xs text-white/60 font-medium border border-white/[0.08]">
-                          {note.metadata?.tag}
+                          {note.metadata?.tag || 'No tag'}
                         </span>
                       </div>
                       <button

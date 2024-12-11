@@ -1,0 +1,6 @@
+haystack-ai
+firebase-admin
+python-dotenv
+ollama
+numpy
+google-generativeai 

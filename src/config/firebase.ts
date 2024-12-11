@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, initializeFirestore, CACHE_SIZE_UNLIMITED } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
@@ -16,9 +16,15 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Firestore with settings
+const db = initializeFirestore(app, {
+  cacheSizeBytes: CACHE_SIZE_UNLIMITED
+});
+
+// Initialize other services
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
-const db = getFirestore(app);
 const storage = getStorage(app);
 
 export { app, analytics, auth, db, storage };
